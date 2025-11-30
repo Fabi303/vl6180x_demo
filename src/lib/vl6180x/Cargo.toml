@@ -1,0 +1,18 @@
+[package]
+edition      = "2024"
+name         = "vl6180x"
+authors      = ["Fabian Tietz <fabi.303.ft@gmail.com"]
+rust-version = "1.88"
+version      = "0.1.0"
+description  = "A basic demonstration driver for vl6180x TOF sensor. Supports one shot measurement, only distance, no ambient light."
+license      = "MIT"
+
+[lib]
+name = "vl6180x"
+path = "./lib.rs"
+
+[dependencies]
+embedded-hal = "1.0.0"
+esp-println = { version = "0.16.1", features = ["esp32c3"] }
+
+
