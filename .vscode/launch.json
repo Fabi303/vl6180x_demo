@@ -1,0 +1,42 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "probe-rs Debug (RISCV-None-ELF)",
+            "type": "probe-rs-debug",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+
+            // UPDATED: Path now uses the 'riscv32imc-unknown-none-elf' target directory.
+            "program": "${workspaceFolder}\\target\\riscv32imc-unknown-none-elf\\debug\\vl6180x_example",
+            
+            // Assuming you are still targeting the ESP32C3, which is a common RISC-V chip.
+            "chip": "ESP32C3", 
+
+            // This array fixes the "missing field `coreConfigs`" error.
+            "coreConfigs": [
+                {
+                    // The core identifier for this chip.
+                    "core": "0", 
+                    "rttEnabled": true,
+                    "rttChannelConfigs": [
+                        {
+                            "channelName": "Terminal",
+                            "scrollToBottom": true,
+                            "showTimestamps": false
+                        }
+                    ],
+                    "programBinary": "${workspaceFolder}\\target\\riscv32imc-unknown-none-elf\\debug\\vl6180x_example"
+                }
+            ],
+            
+            "flashingConfig": {
+                "flashingEnabled": true,
+                "haltAfterReset": true,
+                "base_address": null,
+                "dryRun": false
+            },
+
+        }
+    ]
+}

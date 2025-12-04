@@ -1,0 +1,30 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            // This label must match the "preLaunchTask" name in launch.json
+            "label": "cargo build",
+            "type": "process",
+            "command": "cargo",
+            "args": [
+                "build",
+                // Specify the target to match the debug configuration
+                "--target", "riscv32imc-unknown-none-elf"
+                // Optional: Add "--release" here if you want to debug the release build
+            ],
+            // Designate this as a build task
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            // Use the built-in problem matcher for Rust compiler output
+            "problemMatcher": [
+                "$rustc"
+            ],
+            "detail": "Builds the firmware for the ESP32-C3 target (riscv32imc-esp-espidf)."
+        }
+    ]
+}
+

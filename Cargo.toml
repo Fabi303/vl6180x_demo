@@ -26,7 +26,32 @@ heapless = "0.9.2"
 [profile.dev]
 # Rust debug is too slow.
 # For debug builds always builds with some optimization
-opt-level = "s"
+# This is your main development profile.
+
+# 1. Set Debugging Information Level
+# The standard default is usually 1, but setting it to 2 or higher
+# ensures the DWARF debug information is fully emitted, including
+# information needed for stack unwinding.
+debug = 2
+
+# 2. Disable Link Time Optimization (LTO)
+# LTO can aggressively optimize code across modules, often eliminating
+# or moving stack frame pointers, confusing the debugger.
+lto = "off"
+
+# 3. Restrict Code Generation Units
+# By default, Cargo compiles code in parallel units. Setting this to 1 
+# forces the compiler to use a single compilation unit, which results in 
+# more reliable (though slower) debug information for the debugger.
+codegen-units = 1
+
+# If you have a separate test or bench profile, ensure they also have
+# the correct debug settings if you plan to debug them.
+# [profile.test]
+# debug = 2
+
+# [profile.bench]
+# debug = 2
 
 [profile.release]
 codegen-units    = 1     # LLVM can perform better optimizations using a single thread
